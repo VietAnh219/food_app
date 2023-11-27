@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:foodapp_flutter/detail_food_screen.dart';
 import 'package:foodapp_flutter/home_screen.dart';
 import 'package:foodapp_flutter/login_screen.dart';
+import 'package:foodapp_flutter/reviews_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +35,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
+      // home: const HomeScreen(),
+      // home: const ReviewsSrceen(),
+      home: const DetailFoodScreen(),
     );
   }
 }

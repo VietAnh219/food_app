@@ -16,6 +16,10 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFFDB166E),
+        leading: const Icon(
+          Icons.search,
+          color: Colors.white,
+        ),
         title: const Text(
           'ORDER HISTORY',
           style: TextStyle(
@@ -26,10 +30,6 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
           ),
         ),
         centerTitle: true,
-        leading: const Icon(
-          Icons.search,
-          color: Colors.white,
-        ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 15),
@@ -56,7 +56,6 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
           },
           itemBuilder: (context, index) {
             return Container(
-              // padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(8),
@@ -92,86 +91,90 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
                           ),
                         ),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            "${orders[index].name}",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: "Nunito",
-                              fontSize: 15,
-                            ),
-                          ),
-                          Text(
-                            "${orders[index].desc}",
-                            style: TextStyle(
-                              color: Color(0xFF5F5F5F),
-                              fontWeight: FontWeight.normal,
-                              fontFamily: "Nunito",
-                              fontSize: 11,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Row(
-                            children: <Widget>[
-                              SizedBox(
-                                width: 70,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    SvgPicture.asset(
-                                      "assets/vectors/ic_star.svg",
-                                      color: Color(0xFFDB166E),
-                                      width: 10,
-                                      height: 10,
-                                    ),
-                                    SvgPicture.asset(
-                                      "assets/vectors/ic_star.svg",
-                                      color: Color(0xFFDB166E),
-                                      width: 10,
-                                      height: 10,
-                                    ),
-                                    SvgPicture.asset(
-                                      "assets/vectors/ic_star.svg",
-                                      color: Color(0xFFDB166E),
-                                      width: 10,
-                                      height: 10,
-                                    ),
-                                    SvgPicture.asset(
-                                      "assets/vectors/ic_star.svg",
-                                      color: Color(0xFFDB166E),
-                                      width: 10,
-                                      height: 10,
-                                    ),
-                                    SvgPicture.asset(
-                                      "assets/vectors/ic_star.svg",
-                                      color: Color(0xFFC4C4C4),
-                                      width: 10,
-                                      height: 10,
-                                    ),
-                                  ],
-                                ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              "${orders[index].name}",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "Nunito",
+                                fontSize: 15,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 6),
-                                child: Text(
-                                  "${orders[index].reviews} reviews",
-                                  style: TextStyle(
-                                    color: Color(0xFFC4C4C4),
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Nunito',
+                            ),
+                            Text(
+                              "${orders[index].desc}",
+                              overflow: TextOverflow.ellipsis,
+                              softWrap: true,
+                              style: TextStyle(
+                                color: Color(0xFF5F5F5F),
+                                fontWeight: FontWeight.normal,
+                                fontFamily: "Nunito",
+                                fontSize: 11,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Row(
+                              children: <Widget>[
+                                SizedBox(
+                                  width: 70,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      SvgPicture.asset(
+                                        "assets/vectors/ic_star.svg",
+                                        color: Color(0xFFDB166E),
+                                        width: 10,
+                                        height: 10,
+                                      ),
+                                      SvgPicture.asset(
+                                        "assets/vectors/ic_star.svg",
+                                        color: Color(0xFFDB166E),
+                                        width: 10,
+                                        height: 10,
+                                      ),
+                                      SvgPicture.asset(
+                                        "assets/vectors/ic_star.svg",
+                                        color: Color(0xFFDB166E),
+                                        width: 10,
+                                        height: 10,
+                                      ),
+                                      SvgPicture.asset(
+                                        "assets/vectors/ic_star.svg",
+                                        color: Color(0xFFDB166E),
+                                        width: 10,
+                                        height: 10,
+                                      ),
+                                      SvgPicture.asset(
+                                        "assets/vectors/ic_star.svg",
+                                        color: Color(0xFFC4C4C4),
+                                        width: 10,
+                                        height: 10,
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              )
-                            ],
-                          ),
-                        ],
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 6),
+                                  child: Text(
+                                    "${orders[index].reviews} reviews",
+                                    style: TextStyle(
+                                      color: Color(0xFFC4C4C4),
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Nunito',
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -254,24 +257,24 @@ List<OrderHistory> orders = [
   ),
   OrderHistory(
     img: "assets/images/img_crab.png",
-    name: "Athalia Putri",
-    desc: "Truffle with mashed potato",
+    name: "Breadcrumb Coated Crab Cakes",
+    desc: "With avocado, red onion and spicy salsa",
     reviews: 286,
     date: "28 Nov 2021 10 : 32 AM",
     cost: "\$ 332.00",
   ),
   OrderHistory(
     img: "assets/images/img_pasta.png",
-    name: "Athalia Putri",
-    desc: "Truffle with mashed potato",
+    name: "Smoked Salmon Pasta",
+    desc: "Smoked salmon with cherry tomatoes, red.....",
     reviews: 286,
     date: "28 Nov 2021 10 : 32 AM",
     cost: "\$ 332.00",
   ),
   OrderHistory(
     img: "assets/images/img_penne.png",
-    name: "Athalia Putri",
-    desc: "Truffle with mashed potato",
+    name: "Penne Arrabbiata",
+    desc: "Fresh basil, garlic, onions, bell peppers, chili..... ",
     reviews: 286,
     date: "28 Nov 2021 10 : 32 AM",
     cost: "\$ 332.00",
