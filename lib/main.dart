@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:foodapp_flutter/all_categories_screen.dart';
+import 'package:foodapp_flutter/book_table_screen.dart';
 import 'package:foodapp_flutter/detail_food_screen.dart';
 import 'package:foodapp_flutter/home_screen.dart';
 import 'package:foodapp_flutter/login_screen.dart';
+import 'package:foodapp_flutter/payment_method_screen.dart';
+import 'package:foodapp_flutter/recent_search_srceen.dart';
+import 'package:foodapp_flutter/result_search_screen.dart';
 import 'package:foodapp_flutter/reviews_screen.dart';
+import 'package:foodapp_flutter/thankyou_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,7 +43,9 @@ class MyApp extends StatelessWidget {
       ),
       // home: const HomeScreen(),
       // home: const ReviewsSrceen(),
-      home: const DetailFoodScreen(),
+      // home: const DetailFoodScreen(),
+      // home: const ResultSearchScreen(),
+      home: const RecentSearchScreen(),
     );
   }
 }
