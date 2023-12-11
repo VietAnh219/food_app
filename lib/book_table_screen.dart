@@ -27,7 +27,12 @@ class _BookTableScreenState extends State<BookTableScreen> {
         leading: Container(
           width: 24,
           height: 24,
-          child: Icon(Icons.close),
+          child: InkWell(
+            child: Icon(Icons.close),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
         ),
         title: const Text(
           "BOOK A TABLE",
@@ -436,7 +441,7 @@ class _BookTableScreenState extends State<BookTableScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                "Total :\$${sum}",
+                "Total :\$ ${sum}",
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -444,24 +449,37 @@ class _BookTableScreenState extends State<BookTableScreen> {
                   fontSize: 16,
                 ),
               ),
-              Row(
-                children: <Widget>[
-                  Text(
-                    "ORDER",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "Nunito",
-                      fontSize: 16,
+              ElevatedButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) =>
+                        buildSuccessDialog(context),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Color(0xFFDB166E),
+                  side: BorderSide(color: Color(0xFFDB166E)),
+                ),
+                child: Row(
+                  children: <Widget>[
+                    Text(
+                      "ORDER",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Nunito",
+                        fontSize: 16,
+                      ),
                     ),
-                  ),
-                  Container(
-                    child: Icon(
-                      Icons.arrow_forward,
-                      color: Colors.white,
+                    Container(
+                      child: Icon(
+                        Icons.arrow_forward,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
@@ -469,6 +487,105 @@ class _BookTableScreenState extends State<BookTableScreen> {
       ),
     );
   }
+}
+
+// Dialog screen
+Widget dialogBox(context) {
+  return Container(
+    width: 250,
+    height: 450,
+    child: SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Stack(
+            children: [
+              Positioned(
+                top: 50,
+                left: 100,
+                child: Container(
+                  height: 100,
+                  width: 100,
+                  decoration: BoxDecoration(
+                    color: Color(0xFFDB166E).withOpacity(0.2),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(50),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                height: 262,
+                width: 262,
+                child: Image.asset("assets/images/img_deliver.png"),
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 13),
+            child: Text(
+              'Thank You !',
+              style: TextStyle(
+                fontSize: 36,
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Text(
+            'Your oder is succesfully',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 30),
+            width: 126,
+            height: 50,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Color(0xFFDB166E),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text(
+                "OK",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'Nunito',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+// Dialog screen
+Widget buildSuccessDialog(BuildContext context) {
+  return AlertDialog(
+    backgroundColor: Colors.white,
+    content: Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        dialogBox(context),
+      ],
+    ),
+    actions: const <Widget>[],
+  );
 }
 
 class Menu {

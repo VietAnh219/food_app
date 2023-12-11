@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:foodapp_flutter/detail_food_screen.dart';
 
 class ResultSearchScreen extends StatefulWidget {
   const ResultSearchScreen({super.key});
@@ -41,13 +42,19 @@ class _ResultSearchScreenState extends State<ResultSearchScreen> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Container(
-                          width: 24,
-                          height: 24,
-                          child: SvgPicture.asset(
-                            "assets/vectors/ic_arrowleft.svg",
-                            fit: BoxFit.none,
-                            color: Colors.black,
+                        InkWell(
+                          splashColor: Color.fromRGBO(0, 0, 0, 0.54),
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            width: 24,
+                            height: 24,
+                            child: SvgPicture.asset(
+                              "assets/vectors/ic_arrowleft.svg",
+                              fit: BoxFit.none,
+                              color: Colors.black,
+                            ),
                           ),
                         ),
                         Padding(
@@ -225,188 +232,64 @@ class _ResultSearchScreenState extends State<ResultSearchScreen> {
                       );
                     },
                     itemBuilder: (context, index) {
-                      return Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color.fromARGB(255, 191, 188, 188),
-                              blurRadius: 2,
-                              offset: Offset(-1.5, 4),
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const DetailFoodScreen(),
                             ),
-                          ],
-                        ),
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                              width: double.infinity,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(8),
-                                  topRight: Radius.circular(8),
-                                ),
-                                child: Image.asset(
-                                  "${search[index].img}",
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                top: 10,
-                                left: 25,
-                                bottom: 10,
-                                right: 10,
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    "${search[index].name}",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: "Nunito",
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    "${search[index].ingredient}",
-                                    style: TextStyle(
-                                      color: Color(0xFF5F5F5F),
-                                      fontSize: 11,
-                                      fontFamily: "Nunito",
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Row(
-                                    children: <Widget>[
-                                      SizedBox(
-                                        width: 70,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: <Widget>[
-                                            SvgPicture.asset(
-                                              "assets/vectors/ic_star.svg",
-                                              color: Color(0xFFDB166E),
-                                              width: 10,
-                                              height: 10,
-                                            ),
-                                            SvgPicture.asset(
-                                              "assets/vectors/ic_star.svg",
-                                              color: Color(0xFFDB166E),
-                                              width: 10,
-                                              height: 10,
-                                            ),
-                                            SvgPicture.asset(
-                                              "assets/vectors/ic_star.svg",
-                                              color: Color(0xFFDB166E),
-                                              width: 10,
-                                              height: 10,
-                                            ),
-                                            SvgPicture.asset(
-                                              "assets/vectors/ic_star.svg",
-                                              color: Color(0xFFDB166E),
-                                              width: 10,
-                                              height: 10,
-                                            ),
-                                            SvgPicture.asset(
-                                              "assets/vectors/ic_star.svg",
-                                              color: Color(0xFFC4C4C4),
-                                              width: 10,
-                                              height: 10,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 6),
-                                        child: Text(
-                                          "${search[index].reviews} reviews",
-                                          style: TextStyle(
-                                            color: Color(0xFFC4C4C4),
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: 'Nunito',
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                )
-              : Container(
-                  height: 540,
-                  margin: EdgeInsets.symmetric(horizontal: 8),
-                  child: GridView.builder(
-                    itemCount: search.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisExtent: 310,
-                    ),
-                    itemBuilder: (context, index) {
-                      return Container(
-                        margin: EdgeInsets.only(bottom: 10, left: 6, right: 6),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color.fromARGB(255, 191, 188, 188),
-                              blurRadius: 2,
-                              offset: Offset(-1.5, 4),
-                            ),
-                          ],
-                        ),
-                        width: 167,
+                          );
+                        },
                         child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(8),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromARGB(255, 191, 188, 188),
+                                blurRadius: 2,
+                                offset: Offset(-1.5, 4),
+                              ),
+                            ],
+                          ),
                           child: Column(
                             children: <Widget>[
                               Container(
-                                height: 167,
-                                width: 167,
-                                decoration: BoxDecoration(
+                                width: double.infinity,
+                                child: ClipRRect(
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(8),
                                     topRight: Radius.circular(8),
                                   ),
-                                  image: DecorationImage(
-                                    image: AssetImage("${search[index].img}"),
+                                  child: Image.asset(
+                                    "${search[index].img}",
                                     fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 5,
-                              ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 12),
+                                padding: const EdgeInsets.only(
+                                  top: 10,
+                                  left: 25,
+                                  bottom: 10,
+                                  right: 10,
+                                ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
+                                  children: <Widget>[
                                     Text(
                                       "${search[index].name}",
                                       style: TextStyle(
-                                        fontFamily: "Nunito",
+                                        color: Colors.black,
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
+                                        fontFamily: "Nunito",
                                       ),
                                     ),
-                                    SizedBox(height: 5),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
                                     Text(
                                       "${search[index].ingredient}",
                                       style: TextStyle(
@@ -415,7 +298,9 @@ class _ResultSearchScreenState extends State<ResultSearchScreen> {
                                         fontFamily: "Nunito",
                                       ),
                                     ),
-                                    SizedBox(height: 5),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
                                     Row(
                                       children: <Widget>[
                                         SizedBox(
@@ -461,7 +346,7 @@ class _ResultSearchScreenState extends State<ResultSearchScreen> {
                                           padding:
                                               const EdgeInsets.only(left: 6),
                                           child: Text(
-                                            "${search[index].reviews}",
+                                            "${search[index].reviews} reviews",
                                             style: TextStyle(
                                               color: Color(0xFFC4C4C4),
                                               fontSize: 10,
@@ -469,13 +354,159 @@ class _ResultSearchScreenState extends State<ResultSearchScreen> {
                                               fontFamily: 'Nunito',
                                             ),
                                           ),
-                                        ),
+                                        )
                                       ],
                                     ),
                                   ],
                                 ),
                               ),
                             ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                )
+              : Container(
+                  height: 540,
+                  margin: EdgeInsets.symmetric(horizontal: 8),
+                  child: GridView.builder(
+                    itemCount: search.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisExtent: 310,
+                    ),
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const DetailFoodScreen(),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          margin:
+                              EdgeInsets.only(bottom: 10, left: 6, right: 6),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(8),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color.fromARGB(255, 191, 188, 188),
+                                blurRadius: 2,
+                                offset: Offset(-1.5, 4),
+                              ),
+                            ],
+                          ),
+                          width: 167,
+                          child: Container(
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  height: 167,
+                                  width: 167,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(8),
+                                      topRight: Radius.circular(8),
+                                    ),
+                                    image: DecorationImage(
+                                      image: AssetImage("${search[index].img}"),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 12),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "${search[index].name}",
+                                        style: TextStyle(
+                                          fontFamily: "Nunito",
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      SizedBox(height: 5),
+                                      Text(
+                                        "${search[index].ingredient}",
+                                        style: TextStyle(
+                                          color: Color(0xFF5F5F5F),
+                                          fontSize: 11,
+                                          fontFamily: "Nunito",
+                                        ),
+                                      ),
+                                      SizedBox(height: 5),
+                                      Row(
+                                        children: <Widget>[
+                                          SizedBox(
+                                            width: 70,
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: <Widget>[
+                                                SvgPicture.asset(
+                                                  "assets/vectors/ic_star.svg",
+                                                  color: Color(0xFFDB166E),
+                                                  width: 10,
+                                                  height: 10,
+                                                ),
+                                                SvgPicture.asset(
+                                                  "assets/vectors/ic_star.svg",
+                                                  color: Color(0xFFDB166E),
+                                                  width: 10,
+                                                  height: 10,
+                                                ),
+                                                SvgPicture.asset(
+                                                  "assets/vectors/ic_star.svg",
+                                                  color: Color(0xFFDB166E),
+                                                  width: 10,
+                                                  height: 10,
+                                                ),
+                                                SvgPicture.asset(
+                                                  "assets/vectors/ic_star.svg",
+                                                  color: Color(0xFFDB166E),
+                                                  width: 10,
+                                                  height: 10,
+                                                ),
+                                                SvgPicture.asset(
+                                                  "assets/vectors/ic_star.svg",
+                                                  color: Color(0xFFC4C4C4),
+                                                  width: 10,
+                                                  height: 10,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 6),
+                                            child: Text(
+                                              "${search[index].reviews}",
+                                              style: TextStyle(
+                                                color: Color(0xFFC4C4C4),
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: 'Nunito',
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       );

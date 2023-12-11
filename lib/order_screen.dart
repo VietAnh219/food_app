@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:foodapp_flutter/result_search_screen.dart';
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({super.key});
@@ -23,6 +24,7 @@ class _OrderScreenState extends State<OrderScreen> {
         ),
       ),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.transparent,
         body: Column(
           children: <Widget>[
@@ -152,8 +154,22 @@ class _OrderScreenState extends State<OrderScreen> {
                 borderRadius: BorderRadius.circular(4),
                 color: Color(0xFFDB166E),
               ),
-              child: const Center(
-                child: Text(
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Color(0xFFDB166E),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ResultSearchScreen(),
+                    ),
+                  );
+                },
+                child: const Text(
                   "SEARCH",
                   style: TextStyle(
                     color: Colors.white,

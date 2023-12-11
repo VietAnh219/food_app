@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:foodapp_flutter/all_categories_screen.dart';
+import 'package:foodapp_flutter/book_table_screen.dart';
+import 'package:foodapp_flutter/reviews_screen.dart';
 import 'package:readmore/readmore.dart';
 
 class DetailFoodScreen extends StatefulWidget {
@@ -387,7 +390,14 @@ class _DetailFoodScreenState extends State<DetailFoodScreen> {
                       ),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const AllCateScreen(),
+                          ),
+                        );
+                      },
                       style: TextButton.styleFrom(
                         textStyle: TextStyle(
                           fontFamily: "Nunito",
@@ -583,7 +593,14 @@ class _DetailFoodScreenState extends State<DetailFoodScreen> {
                       ),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ReviewsSrceen(),
+                          ),
+                        );
+                      },
                       style: TextButton.styleFrom(
                         textStyle: TextStyle(
                           fontFamily: "Nunito",
@@ -729,16 +746,26 @@ class _DetailFoodScreenState extends State<DetailFoodScreen> {
         color: Color(0xFFDB166E),
         height: 54,
         width: double.infinity,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 18),
-          child: Text(
-            "BOOK A TABLE",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontFamily: "Nunito",
-              color: Colors.white,
+        child: InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const BookTableScreen(),
+              ),
+            );
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 18),
+            child: Text(
+              "BOOK A TABLE",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontFamily: "Nunito",
+                color: Colors.white,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
           ),
         ),
       ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:foodapp_flutter/profile_screen.dart';
+import 'package:foodapp_flutter/recent_search_srceen.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
@@ -14,9 +16,19 @@ class _NotificationScreenState extends State<NotificationScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFFDB166E),
-        leading: Icon(
-          Icons.search,
-          color: Colors.white,
+        leading: InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const RecentSearchScreen(),
+              ),
+            );
+          },
+          child: Icon(
+            Icons.search,
+            color: Colors.white,
+          ),
         ),
         title: Text(
           "NOTIFICATION",
@@ -29,10 +41,20 @@ class _NotificationScreenState extends State<NotificationScreen> {
         ),
         centerTitle: true,
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 15),
-            child: Container(
-              child: SvgPicture.asset("assets/vectors/ic_setting.svg"),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProfileScreen(),
+                ),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 15),
+              child: Container(
+                child: SvgPicture.asset("assets/vectors/ic_setting.svg"),
+              ),
             ),
           ),
         ],

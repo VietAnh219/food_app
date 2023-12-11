@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:foodapp_flutter/favorite_screen.dart';
@@ -79,7 +80,6 @@ class _HomeScreenState extends State<HomeScreen> {
         showSelectedLabels: false,
         showUnselectedLabels: false,
         onTap: (index) {
-          print("vietanh $index");
           setState(() {
             _selectedIndex = index;
             controller.jumpToPage(index);

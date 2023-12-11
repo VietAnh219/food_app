@@ -39,6 +39,13 @@ dependencies:
   google_fonts: ^6.1.0
   readmore: ^2.1.0
   table_calendar: ^3.0.9
+  firebase_core: ^2.24.2
+  cloud_firestore: ^4.13.5
+  firebase_auth: ^4.15.2
+  firebase_storage: ^11.5.5
+  google_sign_in: ^6.1.6
+  sign_in_button: ^3.2.0
+
 
 dev_dependencies:
   flutter_test:

@@ -2,6 +2,8 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:foodapp_flutter/profile_screen.dart';
+import 'package:foodapp_flutter/recent_search_srceen.dart';
 
 class OrderHistoryScreen extends StatefulWidget {
   const OrderHistoryScreen({super.key});
@@ -16,9 +18,19 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFFDB166E),
-        leading: const Icon(
-          Icons.search,
-          color: Colors.white,
+        leading: InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const RecentSearchScreen(),
+              ),
+            );
+          },
+          child: Icon(
+            Icons.search,
+            color: Colors.white,
+          ),
         ),
         title: const Text(
           'ORDER HISTORY',
@@ -31,10 +43,20 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
         ),
         centerTitle: true,
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 15),
-            child: Container(
-              child: SvgPicture.asset("assets/vectors/ic_setting.svg"),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProfileScreen(),
+                ),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 15),
+              child: Container(
+                child: SvgPicture.asset("assets/vectors/ic_setting.svg"),
+              ),
             ),
           ),
         ],

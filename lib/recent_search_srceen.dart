@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:foodapp_flutter/result_search_screen.dart';
 
 class RecentSearchScreen extends StatefulWidget {
   const RecentSearchScreen({super.key});
@@ -14,6 +15,7 @@ class _RecentSearchScreenState extends State<RecentSearchScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         toolbarHeight: 80,
         backgroundColor: Color(0xFFDB166E),
         title: Container(
@@ -50,7 +52,7 @@ class _RecentSearchScreenState extends State<RecentSearchScreen> {
                           ),
                         ),
                         keyboardType: TextInputType.name,
-                        textInputAction: TextInputAction.next,
+                        textInputAction: TextInputAction.done,
                       ),
                     ),
                   ],
@@ -61,17 +63,27 @@ class _RecentSearchScreenState extends State<RecentSearchScreen> {
         ),
         centerTitle: true,
         actions: <Widget>[
-          Container(
-            padding: EdgeInsets.only(
-              right: 10,
-            ),
-            child: Text(
-              'Cancel',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 14,
-                fontWeight: FontWeight.w200,
-                fontFamily: 'Nunito',
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultSearchScreen(),
+                ),
+              );
+            },
+            child: Container(
+              padding: EdgeInsets.only(
+                right: 10,
+              ),
+              child: Text(
+                'Result',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w200,
+                  fontFamily: 'Nunito',
+                ),
               ),
             ),
           ),

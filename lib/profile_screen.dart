@@ -1,5 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:foodapp_flutter/login_screen.dart';
+import 'package:foodapp_flutter/order_history_screen.dart';
+import 'package:foodapp_flutter/payment_method_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -37,7 +41,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         top: 36,
                         bottom: 116,
                       ),
-                      child: SvgPicture.asset("assets/vectors/ic_setting.svg"),
+                      child: IconButton(
+                        icon: const Icon(
+                          Icons.logout_outlined,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          FirebaseAuth.instance.signOut;
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LoginScreen(title: ""),
+                            ),
+                          );
+                        },
+                      ),
                     )
                   ],
                 ),
@@ -85,56 +103,68 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   width: double.infinity,
                   child: Column(
                     children: <Widget>[
-                      Container(
-                        child: Container(
-                          margin: EdgeInsets.only(top: 16),
-                          color: Colors.white,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 13,
-                              horizontal: 25,
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const OrderHistoryScreen(),
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 20),
-                                      child: Container(
-                                        width: 47,
-                                        height: 47,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFF4C8DE7),
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                        ),
-                                        child: SvgPicture.asset(
-                                          "assets/vectors/ic_history.svg",
-                                          fit: BoxFit.none,
-                                          color: Colors.white,
+                          );
+                        },
+                        child: Container(
+                          child: Container(
+                            margin: EdgeInsets.only(top: 16),
+                            color: Colors.white,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 13,
+                                horizontal: 25,
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Row(
+                                    children: <Widget>[
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 20),
+                                        child: Container(
+                                          width: 47,
+                                          height: 47,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xFF4C8DE7),
+                                            borderRadius:
+                                                BorderRadius.circular(50),
+                                          ),
+                                          child: SvgPicture.asset(
+                                            "assets/vectors/ic_history.svg",
+                                            fit: BoxFit.none,
+                                            color: Colors.white,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    Text(
-                                      "Orders History",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: "Nunito",
-                                        fontSize: 14,
+                                      Text(
+                                        "Orders History",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: "Nunito",
+                                          fontSize: 14,
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                Container(
-                                  child: SvgPicture.asset(
-                                    "assets/vectors/ic_right.svg",
-                                    fit: BoxFit.none,
-                                    color: Color(0xFFBABABA),
+                                    ],
                                   ),
-                                ),
-                              ],
+                                  Container(
+                                    child: SvgPicture.asset(
+                                      "assets/vectors/ic_right.svg",
+                                      fit: BoxFit.none,
+                                      color: Color(0xFFBABABA),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -149,61 +179,74 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: ListView.builder(
                             itemCount: profile.length,
                             itemBuilder: (context, index) {
-                              return Container(
-                                color: Colors.white,
-                                padding: EdgeInsets.only(top: 6),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 13,
-                                    horizontal: 25,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Row(
-                                        children: <Widget>[
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: 20),
-                                            child: Container(
-                                              width: 47,
-                                              height: 47,
-                                              decoration: BoxDecoration(
-                                                color: Color(
-                                                  int.parse(
-                                                    "${profile[index].color}",
+                              return InkWell(
+                                onTap: () {
+                                  if (profile[index].title ==
+                                      "Payment Method") {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => PaymentScreen(),
+                                      ),
+                                    );
+                                  }
+                                },
+                                child: Container(
+                                  color: Colors.white,
+                                  padding: EdgeInsets.only(top: 6),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 13,
+                                      horizontal: 25,
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        Row(
+                                          children: <Widget>[
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  right: 20),
+                                              child: Container(
+                                                width: 47,
+                                                height: 47,
+                                                decoration: BoxDecoration(
+                                                  color: Color(
+                                                    int.parse(
+                                                      "${profile[index].color}",
+                                                    ),
                                                   ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(50),
                                                 ),
-                                                borderRadius:
-                                                    BorderRadius.circular(50),
-                                              ),
-                                              child: SvgPicture.asset(
-                                                "${profile[index].icon}",
-                                                fit: BoxFit.none,
-                                                color: Colors.white,
+                                                child: SvgPicture.asset(
+                                                  "${profile[index].icon}",
+                                                  fit: BoxFit.none,
+                                                  color: Colors.white,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          Text(
-                                            "${profile[index].title}",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                              fontFamily: "Nunito",
-                                              fontSize: 14,
+                                            Text(
+                                              "${profile[index].title}",
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: "Nunito",
+                                                fontSize: 14,
+                                              ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                      Container(
-                                        child: SvgPicture.asset(
-                                          "assets/vectors/ic_right.svg",
-                                          fit: BoxFit.none,
-                                          color: Color(0xFFBABABA),
+                                          ],
                                         ),
-                                      ),
-                                    ],
+                                        Container(
+                                          child: SvgPicture.asset(
+                                            "assets/vectors/ic_right.svg",
+                                            fit: BoxFit.none,
+                                            color: Color(0xFFBABABA),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               );

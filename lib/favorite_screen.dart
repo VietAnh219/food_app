@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:foodapp_flutter/recent_search_srceen.dart';
 
 class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({super.key});
@@ -14,9 +15,19 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFFDB166E),
-        leading: const Icon(
-          Icons.search,
-          color: Colors.white,
+        leading: InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const RecentSearchScreen(),
+              ),
+            );
+          },
+          child: Icon(
+            Icons.search,
+            color: Colors.white,
+          ),
         ),
         title: const Text(
           "FAVORITES",

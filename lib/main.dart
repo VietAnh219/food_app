@@ -1,16 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:foodapp_flutter/all_categories_screen.dart';
-import 'package:foodapp_flutter/book_table_screen.dart';
-import 'package:foodapp_flutter/detail_food_screen.dart';
-import 'package:foodapp_flutter/home_screen.dart';
 import 'package:foodapp_flutter/login_screen.dart';
-import 'package:foodapp_flutter/payment_method_screen.dart';
-import 'package:foodapp_flutter/recent_search_srceen.dart';
-import 'package:foodapp_flutter/result_search_screen.dart';
-import 'package:foodapp_flutter/reviews_screen.dart';
-import 'package:foodapp_flutter/thankyou_screen.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -41,11 +38,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      // home: const HomeScreen(),
-      // home: const ReviewsSrceen(),
-      // home: const DetailFoodScreen(),
-      // home: const ResultSearchScreen(),
-      home: const RecentSearchScreen(),
+      home: MyHomePage(
+        title: "",
+      ),
     );
   }
 }
@@ -63,7 +58,6 @@ class MyHomePage extends StatefulWidget {
   // always marked "final".
 
   final String title;
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -80,6 +74,22 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _navigatetohome();
+  }
+
+  _navigatetohome() async {
+    await Future.delayed(Duration(milliseconds: 1000), () {});
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => LoginScreen(title: ""),
+      ),
+    );
   }
 
   @override
@@ -103,7 +113,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           Container(
-            // color: Colors.black,
             child: Image.asset('assets/images/img_deliver.png'),
           ),
         ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:foodapp_flutter/recent_search_srceen.dart';
 
 class PaymentScreen extends StatefulWidget {
   const PaymentScreen({super.key});
@@ -14,12 +15,15 @@ class _PaymentScreenState extends State<PaymentScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFFDB166E),
-        leading: Container(
-          width: 24,
-          height: 24,
-          child: SvgPicture.asset(
-            "assets/vectors/ic_arrowleft.svg",
-            fit: BoxFit.none,
+        leading: InkWell(
+          onTap: () => Navigator.pop(context),
+          child: Container(
+            width: 24,
+            height: 24,
+            child: SvgPicture.asset(
+              "assets/vectors/ic_arrowleft.svg",
+              fit: BoxFit.none,
+            ),
           ),
         ),
         title: const Text(
@@ -33,11 +37,21 @@ class _PaymentScreenState extends State<PaymentScreen> {
         ),
         centerTitle: true,
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 15),
-            child: Icon(
-              Icons.search,
-              color: Colors.white,
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => RecentSearchScreen(),
+                ),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 15),
+              child: Icon(
+                Icons.search,
+                color: Colors.white,
+              ),
             ),
           ),
         ],
